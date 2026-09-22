@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Alert</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Consolas, monospace;
+}
+body{
+    background:#000;
+    color:#00ff00;
+    overflow:hidden;
+}
+
+#terminal{
+    padding:25px;
+    white-space:pre-wrap;
+    font-size:18px;
+}
+
+.warning{
+    color:red;
+    font-size:42px;
+    text-align:center;
+    margin-top:60px;
+    animation:blink .7s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="warning">⚠ SYSTEM COMPROMISED ⚠</div>
+
+<div id="terminal"></div>
+
+<script>
+
+const terminal = document.getElementById("terminal");
+
+const lines = [
+"Initializing remote connection...",
+"Connecting...",
+"Bypassing firewall...",
+"Access Granted.",
+"Downloading passwords...",
+"Uploading files...",
+"Searching Documents...",
+"Searching Photos...",
+"Encrypting drives...",
+"Installing virus...",
+"Taking webcam access...",
+"Complete."
+];
+
+let i = 0;
+
+function typeLine(){
+
+    if(i >= lines.length){
+
+        setTimeout(()=>{
+            document.body.innerHTML =
+            `
+            <div style="
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            flex-direction:column;
+            background:black;
+            color:white;
+            font-family:Arial;">
+                <h1 style="font-size:70px;color:red;">😂 GOT YOU!</h1>
+                <h2>This was only a harmless prank.</h2>
+            </div>
+            `;
+        },1500);
+
+        return;
+    }
+
+    terminal.innerHTML += "> " + lines[i] + "\n";
+
+    i++;
+
+    setTimeout(typeLine,700);
+
+}
+
+typeLine();
+
+</script>
+
+</body>
+</html>
